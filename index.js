@@ -22,3 +22,5 @@ const server = app.listen(port, () => {
 })
 
 module.exports.server = server
+
+require('./chat')

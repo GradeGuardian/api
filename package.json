@@ -6,10 +6,12 @@
   "author": "Andrew Arpasi <andrew@andrewarpasi.com>",
   "license": "MIT",
   "dependencies": {
+    "apiai": "^4.0.3",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.3",
-    "mongoose": "^4.11.4"
+    "mongoose": "^4.11.4",
+    "socket.io": "^2.0.3"
   },
   "scripts": {
     "start": "node index.js"
