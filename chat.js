@@ -17,6 +17,9 @@ io.on('connection', (socket) => {
 
     socket.on('message', (message) => {
         console.log('Got message: ', message)
+        sendToAPI(message.message,function(data) {
+            socket.emit('message',newMessage(data.result.fulfillment.speech))
+        })
     })
     
     socket.emit('message', newMessage('Hi, I\'m Desiree. I\'m built to get you better grades. Ready to get started?'))
@@ -48,5 +51,5 @@ function sendToAPI(text,callback) {
 }
 
 sendToAPI("Hello",function(data){
-    console.log(data)
+    console.log(data.result.fulfillment.speech)
 })
