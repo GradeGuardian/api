@@ -16,10 +16,12 @@ io.on('connection', (socket) => {
     })
 
     socket.on('message', (message) => {
-        console.log('Got message: ', message)
+        console.log('User: ', message.message)
         socket.emit('message-success', { })
         sendToAPI(message.message,function(data) {
-            socket.emit('message',newMessage(data.result.fulfillment.speech))
+            const repsonse = data.result.fulfillment.speech
+            console.log('Desiree: ' + response)
+            socket.emit('message',newMessage(response))
         })
     })
     
