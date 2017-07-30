@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
         console.log('User: ', message.message)
         socket.emit('message-success', { })
         sendToAPI(message.message,function(data) {
-            const repsonse = data.result.fulfillment.speech
+            const response = data.result.fulfillment.speech
             console.log('Desiree: ' + response)
             socket.emit('message',newMessage(response))
         })
