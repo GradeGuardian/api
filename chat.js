@@ -17,6 +17,7 @@ io.on('connection', (socket) => {
 
     socket.on('message', (message) => {
         console.log('Got message: ', message)
+        socket.emit('message-success', { })
         sendToAPI(message.message,function(data) {
             socket.emit('message',newMessage(data.result.fulfillment.speech))
         })
