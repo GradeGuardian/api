@@ -11,9 +11,10 @@
     "cors": "^2.8.4",
     "express": "^4.15.3",
     "mongoose": "^4.11.4",
+    "randomstring": "^1.1.5",
     "socket.io": "^2.0.3"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "yarn & node index.js"
   }
 }
