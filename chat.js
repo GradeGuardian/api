@@ -70,7 +70,3 @@ function sendToAPI(text,session,callback) {
     
     request.end()
 }
-
-sendToAPI("Hello",function(data){
-    console.log(data.result.fulfillment.speech)
-})
