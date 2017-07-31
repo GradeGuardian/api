@@ -11,7 +11,7 @@ let sessions = []
 
 io.on('connection', (socket) => {
     console.log('User connected')
-    socketListeners
+    
     socket.on('disconnect', () => {
         console.log('User disconnected')
     })
