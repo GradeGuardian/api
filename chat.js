@@ -7,7 +7,7 @@ const server = application.server
 
 const io = require('socket.io').listen(server)
 
-let socketListeners = []
+let sessions = []
 
 io.on('connection', (socket) => {
     console.log('User connected')
@@ -17,12 +17,12 @@ io.on('connection', (socket) => {
     })
 
     const session = newSession(socket)
-    socketListeners.push(session)
+    sessions.push(session)
 
     socket.on('message', (message) => {
         console.log('User: ', message.message)
         socket.emit('message-success', { })
-        sendToAPI(message.message,function(data) {
+        sendToAPI(message.message,session,function(data) {
             const response = data.result.fulfillment.speech
             console.log('Desiree: ' + response)
             socket.emit('message',newMessage(response))
@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
     
     socket.emit('message', newMessage('Hi, I\'m Desiree. I\'m built to get you better grades. I\'m going to be asking some questions so please bear with me.'))
     setTimeout(function(){
-        sendToAPI('start-data-collect',function(data) {
+        sendToAPI('start-data-collect',session,function(data) {
             const response = data.result.fulfillment.speech
             console.log('Desiree: ' + response)
             socket.emit('message',newMessage(response))
