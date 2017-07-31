@@ -7,12 +7,13 @@ var app = express()
 var api = express.Router()
 app.use('/api/v1', api)
 app.use(cors())
+app.use(express.static('public'));
 
 module.exports.app = app
 module.exports.api = api
 
 app.get('/', (req, res) => {
-    res.send('GradeGuardian')
+    res.sendFile(__dirname + '/index.html')
 })
 
 const port = 4404

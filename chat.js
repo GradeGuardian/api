@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
             console.log('Desiree: ' + response)
             socket.emit('message',newMessage(response))
         })
-    },1000)
+    },2000)
 })
 
 function newMessage(text) {
