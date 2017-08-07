@@ -78,4 +78,5 @@ function sendToAPI(text,session,callback) {
 }
 
 module.exports.desiree = desiree
+module.exports.sendToAPI = sendToAPI
 module.exports.newMessage = newMessage
