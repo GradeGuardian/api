@@ -7,7 +7,7 @@ function handleResponse(response,session) {
   if(message === 'start-second-collect') {
     console.log("start second");
     chat.sendToAPI('start-second-collection',session,function(data) {
-      session.socket.emit('message',newMessage(data.result.fulfillment.speech))
+      session.socket.emit('message',chat.newMessage(data.result.fulfillment.speech))
     })
     return true
   }
