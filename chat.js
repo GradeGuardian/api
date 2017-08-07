@@ -55,6 +55,7 @@ function newSession(socket) {
         dbObjectId: null,
         socket: socket,
         state: 0,
+        rawData: null,
     }
 }
 
@@ -65,7 +66,6 @@ function sendToAPI(text,session,callback) {
         sessionId: session.sessionId,
     })
     request.on('response', function(response) {
-        console.log('response',response);
         if(chatState.handleResponse(response,session)) return;
         callback(response)
     })
