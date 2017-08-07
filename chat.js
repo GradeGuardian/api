@@ -51,6 +51,7 @@ function newSession(socket) {
     return {
         sessionId: randomstring.generate(16),
         dbObjectId: null,
+        state: 0
     }
 }
 
@@ -61,6 +62,7 @@ function sendToAPI(text,session,callback) {
         sessionId: session.sessionId,
     })
     request.on('response', function(response) {
+        console.log('response',response);
         callback(response)
     })
     
