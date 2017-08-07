@@ -3,6 +3,8 @@ const secrets = require('./secrets')
 const apiai = require('apiai')
 const randomstring = require('randomstring')
 
+const chatState = require('./chatstate')
+
 const server = application.server
 
 const io = require('socket.io').listen(server)
@@ -51,7 +53,8 @@ function newSession(socket) {
     return {
         sessionId: randomstring.generate(16),
         dbObjectId: null,
-        state: 0
+        socket: socket,
+        state: 0,
     }
 }
 
@@ -63,6 +66,7 @@ function sendToAPI(text,session,callback) {
     })
     request.on('response', function(response) {
         console.log('response',response);
+        if(chatState.handleResponse(response,session)) return;
         callback(response)
     })
     
@@ -72,3 +76,6 @@ function sendToAPI(text,session,callback) {
     
     request.end()
 }
+
+module.exports.desiree = desiree
+module.exports.newMessage = newMessage
