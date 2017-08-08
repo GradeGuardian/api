@@ -1,4 +1,5 @@
 const chat = require('./chat')
+const Student = require('./models/student')
 
 const desiree = chat.desiree
 
@@ -22,9 +23,21 @@ function handleResponse(response,session) {
     setTimeout(function() {
       session.socket.emit('message',chat.newMessage('Now that we are done, feel free to make small talk with me!'))
     },2000)
-    return true;
+    return true
   }
   return false
+}
+
+function formatDataAndSave(session) {
+  const data = session.rawData
+  data.age = data.age.amount
+  data.G1 = (parseInt(data.G1) * 5).toString()
+  data.G2 = (parseInt(data.G2) * 5).toString()
+  data.guardian = data.guardian.toLowerCase()
+  data.famsize = parseInt(data.famsize) > 3 ? 'GT3' : 'LT3'
+  session.data = data
+  const student = new Student(session.data)
+  student.save()
 }
 
 module.exports.handleResponse = handleResponse
