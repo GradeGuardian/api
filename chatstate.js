@@ -14,7 +14,8 @@ function handleResponse(response,session) {
     return true
   }
   else if(message === 'finish-collect') {
-    session.data = Object.assign(session.rawData,response.result.parameters)
+    session.rawData = Object.assign(session.rawData,response.result.parameters)
+    formatDataAndSave(session)
     console.log(session.rawData)
     session.socket.emit('message',chat.newMessage('Thanks you for helping us help you help us all! That\'s all the questions I have today.'));
     setTimeout(function() {
