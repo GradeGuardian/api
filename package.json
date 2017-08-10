@@ -12,6 +12,7 @@
     "express": "^4.15.3",
     "mongoose": "^4.11.4",
     "randomstring": "^1.1.5",
+    "request": "^2.81.0",
     "socket.io": "^2.0.3"
   },
   "scripts": {
