@@ -29,13 +29,9 @@ function formatDataForMLAndSave(session) {
   data.failures = data.failures.toString()
 
   session.data = data
-  const student = new Student(session.data)
   console.log("Formatted Data")
   console.log(data)
-  student.save(function(err) {
-    if(err) throw err;
-    predict.predictWithFormattedData(data,student)
-  })
+  predict.predictWithFormattedData(data)
 }
 
 function formatDataForAdvisor(data) {
