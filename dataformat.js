@@ -90,3 +90,4 @@ function yesNo(value) {
 
 module.exports.formatDataForMLAndSave = formatDataForMLAndSave
 module.exports.formatListForAdvisor = formatListForAdvisor
+module.exports.formatStudentForAdvisor = formatStudentForAdvisor

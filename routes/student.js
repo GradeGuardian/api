@@ -31,6 +31,6 @@ api.get('/student/:id',function(req,res){
   const id = req.params.id
   Student.findOne({_id: id}).lean().exec(function(err,student) {
     if(err) res.json({error: err});
-    res.json(student)
+    res.json(dataformat.formatStudentForAdvisor(student))
   })
 })
