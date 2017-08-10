@@ -34,8 +34,23 @@ function formatDataForMLAndSave(session) {
   predict.predictWithFormattedData(data)
 }
 
-function formatDataForAdvisor(data) {
+function formatListForAdvisor(rawStudents) {
+  const students = rawStudents.toObject()
+  let list = []
+  students.forEach(function(rawStudent) {
+    const student = {
+      name: rawStudent.name,
+      gpa: (parseInt(rawStudent.G1) + parseInt(rawStudent.G2)) / 10,
+      atRisk: rawStudent.atRisk
+    }
+    list.push(student)
+  })
+  return list
+}
+
+function formatStudentForAdvisor(rawStudent) {
 
 }
 
 module.exports.formatDataForMLAndSave = formatDataForMLAndSave
+module.exports.formatListForAdvisor = formatListForAdvisor

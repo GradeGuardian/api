@@ -4,6 +4,8 @@ const api = index.api
 
 const Student = require('../models/student')
 
+const dataformat = require('../dataformat')
+
 api.get('/students',function(req,res){
   Student.find({},function(err,students) {
     if(err) res.json({error: err});
@@ -14,14 +16,14 @@ api.get('/students',function(req,res){
 api.get('/students/atrisk',function(req,res){
   Student.find({atRisk: true},function(err,students) {
     if(err) res.json({error: err});
-    res.json(students)
+    res.json(dataformat.formatListForAdvisor(students))
   })
 })
 
 api.get('/students/norisk',function(req,res){
   Student.find({atRisk: false},function(err,students) {
     if(err) res.json({error: err});
-    res.json(students)
+    res.json(dataformat.formatListForAdvisor(students))
   })
 })
 
