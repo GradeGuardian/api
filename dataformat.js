@@ -37,6 +37,7 @@ function formatDataForMLAndSave(session) {
 function formatListForAdvisor(rawStudents) {
   let students = []
   rawStudents.forEach(function(rawStudent) {
+    console.log(rawStudent)
     console.log("G1 and G2",rawStudent.G1,rawStudent.G2)
     const student = {
       name: rawStudent.name,
