@@ -1,4 +1,6 @@
 
+const Student = require('./models/student')
+
 function formatDataForMLAndSave(session) {
   const data = session.rawData
   data.age = data.age.amount
