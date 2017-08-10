@@ -35,15 +35,14 @@ function formatDataForMLAndSave(session) {
 }
 
 function formatListForAdvisor(rawStudents) {
-  const students = rawStudents.toObject()
-  let list = []
-  students.forEach(function(rawStudent) {
+  let students = []
+  rawStudents.forEach(function(rawStudent) {
     const student = {
       name: rawStudent.name,
       gpa: (parseInt(rawStudent.G1) + parseInt(rawStudent.G2)) / 10,
       atRisk: rawStudent.atRisk
     }
-    list.push(student)
+    students.push(student)
   })
   return list
 }
