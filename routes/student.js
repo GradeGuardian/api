@@ -23,7 +23,7 @@ api.get('/students/atrisk',function(req,res){
 api.get('/students/norisk',function(req,res){
   Student.find({atRisk: false},function(err,students) {
     if(err) res.json({error: err});
-    res.json(dataformat.formatListForAdvisor(students))
+    res.json(dataformat.formatListForAdvisor(students.toObject()))
   })
 })
 
