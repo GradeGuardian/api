@@ -41,6 +41,7 @@ function formatListForAdvisor(rawStudents) {
     console.log("G1 and G2",rawStudent['G1'],rawStudent['G2'])
     console.log("keys",Object.keys(rawStudent))
     const student = {
+      id: rawStudent._id,
       name: rawStudent.name,
       gpa: (parseInt(rawStudent.G1) + parseInt(rawStudent.G2)) / 10,
       atRisk: rawStudent.atRisk
