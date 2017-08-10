@@ -6,7 +6,7 @@ var app = express()
 
 var api = express.Router()
 app.use('/api/v1', api)
-app.use(cors())
+api.use(cors())
 app.use(express.static('public'));
 
 module.exports.app = app
