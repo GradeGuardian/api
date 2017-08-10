@@ -34,7 +34,7 @@ function formatDataForMLAndSave(session) {
   console.log(data)
   student.save(function(err) {
     if(err) throw err;
-    predict.predictWithFormattedData(data)
+    predict.predictWithFormattedData(data,student)
   })
 }
 
