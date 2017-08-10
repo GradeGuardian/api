@@ -1,6 +1,8 @@
 const chat = require('./chat')
 const Student = require('./models/student')
 
+const dataformat = require('./dataformat')
+
 const desiree = chat.desiree
 
 function handleResponse(response,session) {
@@ -15,7 +17,7 @@ function handleResponse(response,session) {
   }
   else if(message === 'finish-collect') {
     session.rawData = Object.assign(session.rawData,response.result.parameters)
-    formatDataAndSave(session)
+    dataformat.formatDataForMLAndSave(session)
     console.log(session.rawData)
     session.socket.emit('message',chat.newMessage('Thanks you for helping us help you help us all! That\'s all the questions I have today.'));
     setTimeout(function() {
@@ -29,16 +31,5 @@ function handleResponse(response,session) {
   return false
 }
 
-function formatDataAndSave(session) {
-  const data = session.rawData
-  data.age = data.age.amount
-  data.G1 = (parseInt(data.G1) * 5).toString()
-  data.G2 = (parseInt(data.G2) * 5).toString()
-  data.guardian = data.guardian.toLowerCase()
-  data.famsize = parseInt(data.famsize) > 3 ? 'GT3' : 'LT3'
-  session.data = data
-  const student = new Student(session.data)
-  student.save()
-}
 
 module.exports.handleResponse = handleResponse
