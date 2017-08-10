@@ -3,7 +3,7 @@ const Student = require('./models/student')
 
 function formatDataForMLAndSave(session) {
   const data = session.rawData
-  data.age = data.age.amount
+  data.age = data.age.amount.toString()
   data.G1 = (parseInt(data.G1) * 5).toString()
   data.G2 = (parseInt(data.G2) * 5).toString()
   data.guardian = data.guardian.toLowerCase()
@@ -25,6 +25,7 @@ function formatDataForMLAndSave(session) {
 
   data.failures = parseInt(data.failures)
   if(data.failures > 4) data.failures = '4';
+  data.failures = data.failures.toString()
 
   session.data = data
   const student = new Student(session.data)
