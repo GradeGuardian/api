@@ -44,7 +44,7 @@ function formatListForAdvisor(rawStudents) {
     }
     students.push(student)
   })
-  return list
+  return students
 }
 
 function formatStudentForAdvisor(rawStudent) {
