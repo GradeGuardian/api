@@ -14,16 +14,16 @@ api.get('/students',function(req,res){
 })
 
 api.get('/students/atrisk',function(req,res){
-  Student.find({atRisk: true},function(err,students) {
+  Student.find({atRisk: true}).lean().exec(function(err,students) {
     if(err) res.json({error: err});
     res.json(dataformat.formatListForAdvisor(students))
   })
 })
 
 api.get('/students/norisk',function(req,res){
-  Student.find({atRisk: false},function(err,students) {
+  Student.find({atRisk: false}).lean().exec(function(err,students) {
     if(err) res.json({error: err});
-    res.json(dataformat.formatListForAdvisor(students.toObject()))
+    res.json(dataformat.formatListForAdvisor(students))
   })
 })
 
