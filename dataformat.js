@@ -1,5 +1,6 @@
 
 const Student = require('./models/student')
+const predict = require('./predict')
 
 function formatDataForMLAndSave(session) {
   const data = session.rawData
@@ -31,7 +32,10 @@ function formatDataForMLAndSave(session) {
   const student = new Student(session.data)
   console.log("Formatted Data")
   console.log(data)
-  student.save()
+  student.save(function(err) {
+    if(err) throw err;
+    predict.predictWithFormattedData(data)
+  })
 }
 
 function formatDataForAdvisor(data) {
